@@ -1,9 +1,13 @@
-type ButtonProps = {
-  text: string;
+import { useState } from "react"
+
+const Button: React.FC = () => {
+  const [count, setCount] = useState(0);
+
+  const incrementCounter = () => {
+    setCount(count => count += 1);
+  }
+
+  return <button onClick={incrementCounter}>{count}</button>
 }
 
-const Button: React.FC<{text: string}> = ({text}: ButtonProps) => {
-  return <button>{text}</button>;
-};
-
-export { Button }
+export { Button };
