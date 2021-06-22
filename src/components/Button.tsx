@@ -1,5 +1,9 @@
-const Button: React.FC = () => {
-  return <button>Clique aqui</button>;
+type ButtonProps = {
+  text: string;
+}
+
+const Button: React.FC<{text: string}> = ({text}: ButtonProps) => {
+  return <button>{text}</button>;
 };
 
-export { Button };
+export { Button }
