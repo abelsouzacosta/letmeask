@@ -7,12 +7,22 @@ import '../styles/auth.scss';
 import { Button } from '../components/Button';
 import { useHistory } from 'react-router-dom';
 
+import { firebase, auth, database } from '../services/firebase';
+
 
 export function Home() {
   const history = useHistory();
 
-  const handleCreateRoom = () => {
-    history.push('rooms/new');
+  const handleCreateRoom = () => {  
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    auth.signInWithPopup(provider)
+      .then(result => {
+        console.log(result);
+
+        history.push('rooms/new');
+      });
+
   };
 
   return (
