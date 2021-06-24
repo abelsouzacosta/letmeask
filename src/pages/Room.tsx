@@ -3,15 +3,24 @@ import { Button } from '../components/Button';
 
 import { RoomCode } from '../components/RoomCode';
 
+import { useParams } from 'react-router-dom';
+
 import '../styles/room.scss';
 
+type RoomParams = {
+  id: string;
+}
+
 export function Room() {
+
+  const params = useParams<RoomParams>();
+
   return (
     <div id="page-room">
       <header>
         <div className="content">
           <img src={logoImg} alt="Letmeask" />
-          <RoomCode code={'React - Rocketseat'} />
+          <RoomCode code={params.id} />
         </div>
       </header>
 
