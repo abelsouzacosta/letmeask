@@ -73,7 +73,9 @@ export function Room() {
           ></textarea>
 
           <div className="form-footer">
-            <span>Para enviar uma pergunta, <button>faça seu login</button></span>
+            {!user && (
+              <span>Para enviar uma pergunta, <button>faça seu login</button></span>
+            )}
             <Button type="submit" disabled={Boolean(!user)}>Enviar pergunta</Button>
           </div>
         </form>
