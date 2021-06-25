@@ -6,6 +6,7 @@ import { RoomCode } from '../components/RoomCode';
 import { useParams } from 'react-router-dom';
 
 import '../styles/room.scss';
+
 import { useState, FormEvent } from 'react';
 import { useAuth } from '../hooks/useAuth';
 
@@ -73,7 +74,12 @@ export function Room() {
           ></textarea>
 
           <div className="form-footer">
-            {!user && (
+            {user ? (
+              <div className="user-info">
+                <img src={user.avatar} alt={user.name} />
+                <span>{user.name}</span>
+              </div>
+            ) : (
               <span>Para enviar uma pergunta, <button>faça seu login</button></span>
             )}
             <Button type="submit" disabled={Boolean(!user)}>Enviar pergunta</Button>
