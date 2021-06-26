@@ -1,7 +1,8 @@
 import logoImg from '../assets/images/logo.svg';
-import { Button } from '../components/Button';
 
+import { Button } from '../components/Button';
 import { RoomCode } from '../components/RoomCode';
+import { QuestionBox } from '../components/QuestionBox';
 
 import { useParams } from 'react-router-dom';
 
@@ -133,6 +134,15 @@ export function Room() {
             <Button type="submit" disabled={Boolean(!user)}>Enviar pergunta</Button>
           </div>
         </form>
+
+        <div className="question-list">
+          { questions.map(question => {
+            return <QuestionBox key={question.id} 
+            content={question.content}
+            author={question.author} />
+          }) }
+        </div>
+        
       </main>
     </div>
   )

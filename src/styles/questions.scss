@@ -1,0 +1,43 @@
+.question {
+  background: #fefefe;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  padding: 24px;
+
+  /* '&' é uma referencia ao próprio elemento (.question)
+  toda vez que uma question vem seguida de outra question
+  a question subsequente vai assumir um margin-top de 8px
+  mas a primeira não recebe o margin top  */
+  & + .question {
+    margin-top: 8px;
+  }
+
+  p {
+    color: #29292e;
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+
+    .user-info {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+      }
+
+      > span {
+        margin-left: 8px;
+        color: #737380;
+        font-size: 14px;
+      }
+    }
+  }
+}
