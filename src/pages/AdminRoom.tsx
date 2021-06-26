@@ -9,8 +9,6 @@ import { useHistory, useParams } from 'react-router-dom';
 
 import '../styles/room.scss';
 
-// import { useState, FormEvent } from 'react';
-// import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
 
 import { database } from '../services/firebase';
@@ -23,8 +21,6 @@ export function AdminRoom() {
   const params = useParams<RoomParams>();
   const roomId = params.id;
   const history = useHistory();
-  // const [newQuestion, setNewQuestion] = useState('');
-  // const { user } = useAuth();
   const { questions, title } = useRoom(roomId);
   
   async function handleCloseRoom() {
