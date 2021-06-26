@@ -1,5 +1,7 @@
 import logoImg from '../assets/images/logo.svg';
 import deleteImg from '../assets/images/delete.svg';
+import checkImg from '../assets/images/check.svg';
+import aswerImg from '../assets/images/answer.svg';
 
 import { Button } from '../components/Button';
 import { RoomCode } from '../components/RoomCode';
@@ -65,6 +67,20 @@ export function AdminRoom() {
               <QuestionBox key={question.id} 
               content={question.content}
               author={question.author}>
+                <button
+                  type="button"
+                  onClick={() => handleDeleteQuestion(question.id)}
+                >
+                  <img src={checkImg} alt="Remover pergunta" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleDeleteQuestion(question.id)}
+                >
+                  <img src={aswerImg} alt="Remover pergunta" />
+                </button>
+
                 <button
                   type="button"
                   onClick={() => handleDeleteQuestion(question.id)}
