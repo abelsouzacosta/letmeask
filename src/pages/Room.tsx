@@ -44,7 +44,7 @@ export function Room() {
         avatar: user.avatar,
       },
       isHighlighted: false,
-      isAnwered: false,
+      isAnswered: false,
     }
 
     // salva a informação dentro do banco de dados da aplicação
