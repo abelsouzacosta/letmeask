@@ -5,7 +5,7 @@ import { Button } from '../components/Button';
 import { RoomCode } from '../components/RoomCode';
 import { QuestionBox } from '../components/QuestionBox';
 
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import '../styles/room.scss';
 
@@ -22,38 +22,20 @@ type RoomParams = {
 export function AdminRoom() {
   const params = useParams<RoomParams>();
   const roomId = params.id;
+  const history = useHistory();
   // const [newQuestion, setNewQuestion] = useState('');
   // const { user } = useAuth();
   const { questions, title } = useRoom(roomId);
   
-  // async function handleSendQuestion(event: FormEvent) {
-  //   event.preventDefault();
+  async function handleCloseRoom() {
+    if (window.confirm('Você realmente deseja encerrar essa sala?'))
+    // encerra a sala
+      await database.ref(`rooms/${roomId}`).update({
+        endedAt: new Date(),
+      })
 
-  //   // verifica se há algo escrito dentro do newQuestion
-  //   if (newQuestion.trim() === '') 
-  //     return ;
-
-  //   // verifica se o usuário está logado
-  //   if (!user)
-  //     throw new Error('You must be logged in to create an question');
-
-  //   // criando o objeto questão
-  //   const question = {
-  //     content: newQuestion,
-  //     author: {
-  //       name: user.name,
-  //       avatar: user.avatar,
-  //     },
-  //     isHighlighted: false,
-  //     isAnwered: false,
-  //   }
-
-  //   // salva a informação dentro do banco de dados da aplicação
-  //   await database.ref(`rooms/${roomId}/questions/`).push(question);
-
-  //   // limpa o textarea do formulário
-  //   setNewQuestion('');
-  // }
+      history.push('/');
+  }
 
   async function handleDeleteQuestion(questionId: string) {
     if (window.confirm('Você realmente deseja excluir essa pergunta?')) {
@@ -68,7 +50,7 @@ export function AdminRoom() {
           <img src={logoImg} alt="Letmeask" />
           <div>
             <RoomCode code={roomId} />
-            <Button isOutlined>Encerrar sala</Button>
+            <Button isOutlined onClick={handleCloseRoom}>Encerrar sala</Button>
           </div>
         </div>
       </header>
