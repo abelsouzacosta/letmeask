@@ -8,11 +8,11 @@ import { useParams } from 'react-router-dom';
 
 import '../styles/room.scss';
 
-import { useState, FormEvent } from 'react';
-import { useAuth } from '../hooks/useAuth';
+// import { useState, FormEvent } from 'react';
+// import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
 
-import { database } from '../services/firebase';
+// import { database } from '../services/firebase';
 
 type RoomParams = {
   id: string;
@@ -21,38 +21,38 @@ type RoomParams = {
 export function AdminRoom() {
   const params = useParams<RoomParams>();
   const roomId = params.id;
-  const [newQuestion, setNewQuestion] = useState('');
-  const { user } = useAuth();
+  // const [newQuestion, setNewQuestion] = useState('');
+  // const { user } = useAuth();
   const { questions, title } = useRoom(roomId);
   
-  async function handleSendQuestion(event: FormEvent) {
-    event.preventDefault();
+  // async function handleSendQuestion(event: FormEvent) {
+  //   event.preventDefault();
 
-    // verifica se há algo escrito dentro do newQuestion
-    if (newQuestion.trim() === '') 
-      return ;
+  //   // verifica se há algo escrito dentro do newQuestion
+  //   if (newQuestion.trim() === '') 
+  //     return ;
 
-    // verifica se o usuário está logado
-    if (!user)
-      throw new Error('You must be logged in to create an question');
+  //   // verifica se o usuário está logado
+  //   if (!user)
+  //     throw new Error('You must be logged in to create an question');
 
-    // criando o objeto questão
-    const question = {
-      content: newQuestion,
-      author: {
-        name: user.name,
-        avatar: user.avatar,
-      },
-      isHighlighted: false,
-      isAnwered: false,
-    }
+  //   // criando o objeto questão
+  //   const question = {
+  //     content: newQuestion,
+  //     author: {
+  //       name: user.name,
+  //       avatar: user.avatar,
+  //     },
+  //     isHighlighted: false,
+  //     isAnwered: false,
+  //   }
 
-    // salva a informação dentro do banco de dados da aplicação
-    await database.ref(`rooms/${roomId}/questions/`).push(question);
+  //   // salva a informação dentro do banco de dados da aplicação
+  //   await database.ref(`rooms/${roomId}/questions/`).push(question);
 
-    // limpa o textarea do formulário
-    setNewQuestion('');
-  }
+  //   // limpa o textarea do formulário
+  //   setNewQuestion('');
+  // }
 
   return (
     <div id="page-room">
