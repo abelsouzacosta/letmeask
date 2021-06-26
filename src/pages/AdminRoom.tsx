@@ -41,6 +41,20 @@ export function AdminRoom() {
     }
   }
 
+  async function handleCheckQuestionAsAnswered(questionId: string) {
+    if (window.confirm('Deseja realmente marcar essa pergunta como respondida?')) {
+      await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+        isAnswered: true,
+      })
+    }
+  }
+
+  async function handleHighlightQuestion(questionId: string) {
+    await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
+      isHighlighted: true,
+    })
+  }
+
   return (
     <div id="page-room">
       <header>
@@ -69,16 +83,16 @@ export function AdminRoom() {
               author={question.author}>
                 <button
                   type="button"
-                  onClick={() => handleDeleteQuestion(question.id)}
+                  onClick={() => handleCheckQuestionAsAnswered(question.id)}
                 >
-                  <img src={checkImg} alt="Remover pergunta" />
+                  <img src={checkImg} alt="Marcar Pergunta como Respondida" />
                 </button>
 
                 <button
                   type="button"
-                  onClick={() => handleDeleteQuestion(question.id)}
+                  onClick={() => handleHighlightQuestion(question.id)}
                 >
-                  <img src={aswerImg} alt="Remover pergunta" />
+                  <img src={aswerImg} alt="Dar destaque a pergunta" />
                 </button>
 
                 <button
