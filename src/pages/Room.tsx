@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 
 import '../styles/room.scss';
 
-import { useState, FormEvent, useEffect } from 'react';
+import { useState, FormEvent } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
 
